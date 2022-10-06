@@ -1,5 +1,5 @@
 module JACC
 
-greet() = print("Hello World!")
+include("array.jl")
 
 end # module JACC
