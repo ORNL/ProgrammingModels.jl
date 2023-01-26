@@ -28,4 +28,6 @@ julia --project=$GS_DIR -e 'using Pkg; Pkg.add("MPIPreferences")'
 julia --project=$GS_DIR -e 'using MPIPreferences; MPIPreferences.use_system_binary(; library_names=["libmpi_ibm"], mpiexec="jsrun")'
 
 # Instantiate the project by installing packages in Project.toml
+julia --project=$GS_DIR -e 'using Pkg; Pkg.add("MPI")'
+julia --project=$GS_DIR -e 'using Pkg; Pkg.add("CUDA")'
 julia --project=$GS_DIR -e 'using Pkg; Pkg.instantiate()'
