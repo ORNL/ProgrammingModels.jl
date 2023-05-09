@@ -4,9 +4,8 @@ using Test
 
 
 @testset "TestBackend" begin
-    @test JACC.backend() == JACC.cuda
+    @test JACC.JACCPreferences.backend == "cuda"
 end
-
 
 @testset "VectorAddLambda" begin
 

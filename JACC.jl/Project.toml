@@ -4,4 +4,20 @@ authors = ["pedrovalerolara <valerolarap@ornl.com>", "williamfgc <williamfgc@yah
 version = "0.1.0"
 
 [deps]
-Requires = "ae029012-a4dd-5104-9daa-d747884805df"
+Preferences = "21216c6a-2e73-6563-6e65-726566657250"
+
+[weakdeps]
+AMDGPU = "21141c5a-9bdb-4563-92ae-f87d6854732e"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+
+[extensions]
+JACCAMDGPU = ["AMDGPU"]
+JACCCUDA = ["CUDA"]
+
+[extras]
+AMDGPU = "21141c5a-9bdb-4563-92ae-f87d6854732e"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["AMDGPU", "CUDA", "Test"]
