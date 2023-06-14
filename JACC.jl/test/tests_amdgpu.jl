@@ -4,7 +4,7 @@ using Test
 
 
 @testset "TestBackend" begin
-    @test JACC.backend() == JACC.amdgpu
+    @test JACC.JACCPreferences.backend == "amdgpu"
 end
 
 
