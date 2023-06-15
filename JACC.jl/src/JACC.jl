@@ -6,12 +6,20 @@ include("JACCPreferences.jl")
 export Array
 export parallel_for
 
-function parallel_for(N, f, d_a)
+global Array
 
+function parallel_for(N, f, a)
+    for i in 1:N
+        f(i, a)
+    end
 end
 
 function __init__()
     @info("Using JACC backend: $(JACCPreferences.backend)")
+
+    if JACCPreferences.backend == "threads"
+        const JACC.Array = Base.Array{T,N} where {T,N}
+    end
 end
 
 

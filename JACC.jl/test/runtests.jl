@@ -8,4 +8,7 @@ const backend = JACC.JACCPreferences.backend
 elseif backend == "amdgpu"
     @show "AMDGPU backend loaded"
     include("tests_amdgpu.jl")
+elseif backend == "threads"
+    @show "Threads backend loaded"
+    include("tests_threads.jl")
 end
