@@ -20,7 +20,7 @@ end
     JACC.parallel_for(10, f, a_device)
 
     a_expected = a .+ 5.0
-    @show Array(a_device) ≈ a_expected rtol = 1e-5
+    @test Array(a_device) ≈ a_expected rtol = 1e-5
 
 end
 
