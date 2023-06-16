@@ -25,6 +25,34 @@ end
 end
 
 
+@testset "AXPY" begin
+
+    function axpy(i, alpha, x, y)
+        @inbounds x[i] = x[i] + alpha[1,1] * y[i]
+    end
+
+    function seq_axpy( N, alpha, x, y)
+        for i in 1:N
+            x[i] = x[i] + alpha[1,1] * y[i]
+        end
+    end
+
+    dims = (1000000)
+    x = round.(rand(Float32, dims) * 100)
+    y = round.(rand(Float32, dims) * 100)
+    alpha = 2.5
+
+    dx = JACC.Array(x)
+    dy = JACC.Array(y)
+    JACC.parallel_for(dims, axpy, alpha, dx, dy)
+
+    x_expected = x
+    seq_axpy(dims, alpha, x_expected, y)
+    
+    @test Array(dx) == x_expected rtol = 1e-10 
+
+end
+
 
 
 
