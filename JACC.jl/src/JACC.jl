@@ -8,9 +8,9 @@ export parallel_for
 
 global Array
 
-function parallel_for(N, f, a)
-    for i in 1:N
-        f(i, a)
+function parallel_for(N::I, f::F, x...) where {I<:Integer,F<:Function}
+    Threads.@threads for i in 1:N
+        f(i, x...)
     end
 end
 
