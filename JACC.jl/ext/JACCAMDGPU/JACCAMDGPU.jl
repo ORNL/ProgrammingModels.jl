@@ -4,8 +4,9 @@ module JACCAMDGPU
 
 using JACC, AMDGPU
 
-function JACC.parallel_for(N, f, d_a)
-    AMDGPU.@roc gridsize = 1 groupsize = N _parallel_for_amdgpu(f, d_a)
+function JACC.parallel_for(N::I, f::F, x...) where {I<:Integer,F<:Function}
+    # @TODO get the gridsize and groupsize
+    AMDGPU.AMDGPU.@roc gridsize = N groupsize = N _parallel_for_amdgpu(f, d_a)
 end
 
 function _parallel_for_amdgpu(f, d_a)

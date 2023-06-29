@@ -8,17 +8,22 @@ using Test
 end
 
 
+@testset "TestBackend" begin
+    @test JACC.JACCPreferences.backend == "cuda"
+end
+
 @testset "VectorAddLambda" begin
 
-    function f(x, d_a)
-        @inbounds d_a[x] = d_a[x] + 5.0
+    function f(i, a)
+        @inbounds a[i] += 5.0
     end
 
-    dims = (10)
+    N = 10
+    dims = (N)
     a = round.(rand(Float32, dims) * 100)
 
     a_device = JACC.Array(a)
-    JACC.parallel_for(10, f, a_device)
+    JACC.parallel_for(N, f, a_device)
 
     a_expected = a .+ 5.0
     @test Array(a_device) ≈ a_expected rtol = 1e-5
